@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVERWATCH — Enterprise Geopolitical Intelligence Platform</title>
+    <meta name="description"
+        content="OVERWATCH delivers real-time military tracking, OSINT aggregation, and AI threat analysis to government agencies, defense contractors, and institutional trading desks.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #020508;
+            --bg2: #070d14;
+            --bg3: #0c1625;
+            --cyan: #00c8ff;
+            --cyan2: #0080ff;
+            --red: #ff3b3b;
+            --amber: #ffaa00;
+            --green: #00ff88;
+            --text: #c8d8e8;
+            --text-dim: #4a6070;
+            --border: rgba(0, 200, 255, 0.12);
+            --border2: rgba(0, 200, 255, 0.25);
+            --mono: 'JetBrains Mono', monospace;
+            --sans: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            overflow-x: hidden;
+        }
+
+        /* ── NOISE TEXTURE ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 0 40px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(2, 5, 8, 0.9);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-logo {
+            font-family: var(--mono);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--cyan);
+            letter-spacing: 4px;
+            text-shadow: 0 0 30px rgba(0, 200, 255, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--red);
+            border-radius: 50%;
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 6px var(--red);
+            }
+
+            50% {
+                opacity: 0.5;
+                box-shadow: 0 0 2px var(--red);
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            color: var(--text-dim);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--cyan);
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid var(--border2);
+            border-radius: 6px;
+            padding: 8px 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--cyan);
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+        }
+
+        .btn-ghost:hover {
+            background: var(--cyan);
+            color: #000;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--cyan), var(--cyan2));
+            border: none;
+            border-radius: 6px;
+            padding: 10px 24px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #000;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 200, 255, 0.35);
+        }
+
+        /* ── SECTIONS ── */
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 40px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background-image:
+                linear-gradient(rgba(0, 200, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 200, 255, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(0, 200, 255, 0.07), transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .classification {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 4px;
+            color: var(--amber);
+            background: rgba(255, 170, 0, 0.1);
+            border: 1px solid rgba(255, 170, 0, 0.3);
+            padding: 4px 16px;
+            border-radius: 4px;
+            margin-bottom: 32px;
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ffffff 30%, var(--cyan) 70%, var(--cyan2) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-sub {
+            font-size: clamp(16px, 2.5vw, 22px);
+            color: var(--text-dim);
+            max-width: 680px;
+            line-height: 1.6;
+            margin-bottom: 48px;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-sub strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 80px;
+        }
+
+        .btn-xl {
+            padding: 16px 36px;
+            font-size: 15px;
+            font-weight: 800;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.25s;
+        }
+
+        .btn-xl-primary {
+            background: linear-gradient(135deg, var(--cyan), var(--cyan2));
+            color: #000;
+        }
+
+        .btn-xl-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 200, 255, 0.4);
+        }
+
+        .btn-xl-ghost {
+            background: transparent;
+            border: 1px solid var(--border2);
+            color: var(--cyan);
+        }
+
+        .btn-xl-ghost:hover {
+            background: rgba(0, 200, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-num {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--cyan);
+            font-family: var(--mono);
+        }
+
+        .hero-stat-label {
+            font-size: 11px;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            margin-top: 4px;
+            text-transform: uppercase;
+        }
+
+        /* ── DASHBOARD PREVIEW ── */
+        .preview-section {
+            padding: 80px 40px;
+        }
+
+        .preview-label {
+            text-align: center;
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--cyan);
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .preview-frame {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid var(--border2);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 80px rgba(0, 200, 255, 0.12), 0 40px 80px rgba(0, 0, 0, 0.6);
+            position: relative;
+        }
+
+        .preview-bar {
+            background: var(--bg2);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pbar-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .preview-iframe {
+            width: 100%;
+            height: 520px;
+            border: none;
+            display: block;
+        }
+
+        .preview-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(2, 5, 8, 0.9);
+            border: 1px solid var(--border2);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--cyan);
+            letter-spacing: 2px;
+        }
+
+        /* ── SECTION HEADERS ── */
+        .section-header {
+            text-align: center;
+            padding: 80px 40px 48px;
+        }
+
+        .section-tag {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: var(--cyan);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .section-header h2 {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 16px;
+            color: var(--text-dim);
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ── USE CASES ── */
+        .use-cases {
+            padding: 0 40px 100px;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .use-case {
+            background: var(--bg2);
+            padding: 40px 36px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .use-case::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            background: radial-gradient(ellipse at top left, rgba(0, 200, 255, 0.08), transparent 60%);
+            transition: opacity 0.3s;
+        }
+
+        .use-case:hover::before {
+            opacity: 1;
+        }
+
+        .use-case:hover {
+            border-color: var(--border2);
+        }
+
+        .use-case-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .use-case h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .use-case p {
+            font-size: 13px;
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        .use-case-tag {
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: var(--cyan);
+            margin-top: 20px;
+            display: block;
+        }
+
+        /* ── CAPABILITIES ── */
+        .capabilities {
+            padding: 0 40px 100px;
+        }
+
+        .cap-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .cap-item {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 24px 28px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            transition: border-color 0.2s;
+        }
+
+        .cap-item:hover {
+            border-color: var(--border2);
+        }
+
+        .cap-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 200, 255, 0.08);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cap-text h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .cap-text p {
+            font-size: 13px;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* ── PRICING ── */
+        .pricing {
+            padding: 0 40px 100px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 36px 28px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .price-card.featured {
+            border-color: var(--cyan);
+            background: linear-gradient(135deg, rgba(0, 200, 255, 0.06), var(--bg2));
+            transform: scale(1.03);
+            box-shadow: 0 0 40px rgba(0, 200, 255, 0.1);
+        }
+
+        .price-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--cyan), var(--cyan2));
+            color: #000;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 16px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .price-tier {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: var(--text-dim);
+            margin-bottom: 12px;
+        }
+
+        .price-amount {
+            font-size: 48px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .price-amount span {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--text-dim);
+        }
+
+        .price-desc {
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 28px;
+        }
+
+        .price-features li {
+            font-size: 13px;
+            color: var(--text);
+            padding: 5px 0;
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .price-features li::before {
+            content: '✓';
+            color: var(--cyan);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .price-features li.dim {
+            color: var(--text-dim);
+        }
+
+        .price-features li.dim::before {
+            content: '—';
+            color: var(--text-dim);
+        }
+
+        .price-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .price-btn-ghost {
+            background: transparent;
+            border: 1px solid var(--border2);
+            color: var(--cyan);
+        }
+
+        .price-btn-ghost:hover {
+            background: rgba(0, 200, 255, 0.1);
+        }
+
+        .price-btn-fill {
+            background: linear-gradient(135deg, var(--cyan), var(--cyan2));
+            border: none;
+            color: #000;
+        }
+
+        .price-btn-fill:hover {
+            box-shadow: 0 4px 20px rgba(0, 200, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .price-btn-enterprise {
+            background: transparent;
+            border: 1px solid var(--amber);
+            color: var(--amber);
+        }
+
+        .price-btn-enterprise:hover {
+            background: rgba(255, 170, 0, 0.1);
+        }
+
+        /* ── ENTERPRISE CTA ── */
+        .enterprise-cta {
+            margin: 0 40px 100px;
+            padding: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            background: linear-gradient(135deg, rgba(0, 200, 255, 0.06), rgba(0, 128, 255, 0.04));
+            border: 1px solid var(--border2);
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .enterprise-cta::before {
+            content: '';
+            position: absolute;
+            inset: -50%;
+            background: radial-gradient(ellipse at center, rgba(0, 200, 255, 0.05), transparent 60%);
+            pointer-events: none;
+        }
+
+        .enterprise-cta h2 {
+            font-size: 40px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .enterprise-cta p {
+            font-size: 16px;
+            color: var(--text-dim);
+            max-width: 560px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+        }
+
+        .enterprise-badges {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 36px;
+        }
+
+        .ent-badge {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 2px;
+            padding: 6px 16px;
+            border-radius: 4px;
+        }
+
+        .ent-badge-amber {
+            background: rgba(255, 170, 0, 0.1);
+            border: 1px solid rgba(255, 170, 0, 0.3);
+            color: var(--amber);
+        }
+
+        .ent-badge-cyan {
+            background: rgba(0, 200, 255, 0.1);
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            color: var(--cyan);
+        }
+
+        .ent-badge-green {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            color: var(--green);
+        }
+
+        .contact-form {
+            display: flex;
+            gap: 12px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .contact-input {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border2);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 14px;
+            color: var(--text);
+            font-family: var(--sans);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .contact-input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .contact-input:focus {
+            border-color: var(--cyan);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-family: var(--mono);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--cyan);
+            letter-spacing: 3px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--cyan);
+        }
+
+        .footer-class {
+            font-family: var(--mono);
+            font-size: 9px;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+        }
+
+        /* ── SCROLL ANIMATIONS ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (max-width: 900px) {
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .price-card.featured {
+                transform: none;
+            }
+
+            .cap-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .enterprise-cta {
+                margin: 0 16px 60px;
+                padding: 40px 24px;
+            }
+
+            nav {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 20px 60px;
+            }
+
+            .contact-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── NAV ── -->
+    <nav>
+        <div class="nav-logo">
+            <div class="nav-dot"></div>OVERWATCH
+        </div>
+        <div class="nav-links">
+            <a href="#capabilities">Capabilities</a>
+            <a href="#use-cases">Use Cases</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#enterprise">Enterprise</a>
+        </div>
+        <div class="nav-cta">
+            <button class="btn-ghost" onclick="window.open('overwatch_dashboard.html')">View Live Demo</button>
+            <button class="btn-primary"
+                onclick="document.getElementById('enterprise').scrollIntoView({behavior:'smooth'})">Request Access
+                →</button>
+        </div>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+        <div class="hero-grid"></div>
+        <div class="hero-glow"></div>
+        <div class="classification">⚠ FOR OFFICIAL USE ONLY — DEMONSTRATION ENVIRONMENT</div>
+        <h1>OVERWATCH</h1>
+        <p class="hero-sub">
+            The intelligence layer for <strong>decision-makers</strong>.<br>
+            Real-time military tracking, OSINT aggregation, and AI threat analysis —
+            built for government agencies, defense contractors, and institutional trading desks.
+        </p>
+        <div class="hero-actions">
+            <button class="btn-xl btn-xl-primary" onclick="window.open('overwatch_dashboard.html')">⚡ Launch Live
+                Terminal</button>
+            <button class="btn-xl btn-xl-ghost"
+                onclick="document.getElementById('enterprise').scrollIntoView({behavior:'smooth'})">Enterprise Briefing
+                →</button>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-num">247+</div>
+                <div class="hero-stat-label">Military AC Live</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-num">600+</div>
+                <div class="hero-stat-label">OSINT Sources</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-num">&lt;5min</div>
+                <div class="hero-stat-label">Update Cycle</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-num">24/7</div>
+                <div class="hero-stat-label">Continuous Watch</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── DASHBOARD PREVIEW ── -->
+    <section class="preview-section fade-up">
+        <div class="preview-label">// live terminal preview</div>
+        <div class="preview-frame">
+            <div class="preview-bar">
+                <div class="pbar-dot" style="background:#ff5f57"></div>
+                <div class="pbar-dot" style="background:#febc2e"></div>
+                <div class="pbar-dot" style="background:#28c840"></div>
+                <span
+                    style="font-family:var(--mono);font-size:11px;color:var(--text-dim);margin-left:12px;">overwatch.titansignal.io
+                    — LIVE INTELLIGENCE TERMINAL</span>
+            </div>
+            <iframe class="preview-iframe" src="overwatch_dashboard.html" title="OVERWATCH Live Terminal"></iframe>
+            <div class="preview-badge">🔴 LIVE FEED ACTIVE</div>
+        </div>
+    </section>
+
+    <!-- ── USE CASES ── -->
+    <section id="use-cases">
+        <div class="section-header fade-up">
+            <span class="section-tag">// deployment verticals</span>
+            <h2>Built for every<br>intelligence mission</h2>
+            <p>From government situation rooms to institutional trading desks — OVERWATCH adapts to your operational
+                environment.</p>
+        </div>
+        <div class="use-cases use-cases-grid fade-up">
+            <div class="use-case">
+                <span class="use-case-icon">🏛️</span>
+                <h3>Government & Military</h3>
+                <p>Conflict monitoring, troop movement tracking, SIGINT integration, and theater-level situational
+                    awareness for defense and intelligence agencies.</p>
+                <span class="use-case-tag">// CLEARED DEPLOYMENT AVAILABLE</span>
+            </div>
+            <div class="use-case">
+                <span class="use-case-icon">🏦</span>
+                <h3>Institutional Trading</h3>
+                <p>Geopolitical risk scores mapped to asset exposure. Trade directives triggered by conflict escalation.
+                    Used by macro desks, hedge funds, and commodity traders.</p>
+                <span class="use-case-tag">// TRADE DIRECTIVE ENGINE</span>
+            </div>
+            <div class="use-case">
+                <span class="use-case-icon">🔭</span>
+                <h3>Corporate Intelligence</h3>
+                <p>Supply chain risk monitoring, executive protection planning, and country risk assessment for
+                    multinationals operating in volatile regions.</p>
+                <span class="use-case-tag">// ENTERPRISE SLA AVAILABLE</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CAPABILITIES ── -->
+    <section id="capabilities">
+        <div class="section-header fade-up">
+            <span class="section-tag">// intelligence modules</span>
+            <h2>Every sensor.<br>One terminal.</h2>
+            <p>OVERWATCH aggregates signals from global data sources into a single, actionable intelligence picture.</p>
+        </div>
+        <div class="capabilities">
+            <div class="cap-grid fade-up">
+                <div class="cap-item">
+                    <div class="cap-icon">✈️</div>
+                    <div class="cap-text">
+                        <h4>Military Aircraft Tracking</h4>
+                        <p>Live ADS-B data from 700+ ground stations. Fighter jets, ISR platforms, bombers, and
+                            transport aircraft tracked in real time across global hotspots.</p>
+                    </div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-icon">🚢</div>
+                    <div class="cap-text">
+                        <h4>Naval Vessel Intelligence</h4>
+                        <p>Carrier group positioning, submarine signature areas, and maritime exclusion zone monitoring
+                            across key straits and contested waters.</p>
+                    </div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-icon">📡</div>
+                    <div class="cap-text">
+                        <h4>OSINT Feed Aggregation</h4>
+                        <p>Automated ingestion from 600+ OSINT channels including Telegram, verified field reporters,
+                            and open-source intelligence networks.</p>
+                    </div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-icon">🤖</div>
+                    <div class="cap-text">
+                        <h4>OVERWATCH AI Analyst</h4>
+                        <p>Powered by Groq LLM with intelligence analyst frameworks (PMESII-ASCOPE). Produces 8-hour
+                            briefings and responds to operator queries in real time.</p>
+                    </div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-icon">📊</div>
+                    <div class="cap-text">
+                        <h4>GeoRisk Score Engine</h4>
+                        <p>Composite threat index (0–100) calculated from aircraft movements, OSINT keyword signals, and
+                            escalation pattern matching. Updates every 5 minutes.</p>
+                    </div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-icon">⚡</div>
+                    <div class="cap-text">
+                        <h4>Trade Directive Engine</h4>
+                        <p>Automated trade signals triggered by risk thresholds. Hedge recommendations for gold, energy,
+                            and safe-haven assets mapped to GeoRisk levels.</p>
+                    </div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-icon">🔐</div>
+                    <div class="cap-text">
+                        <h4>Breach & Cyber Intelligence</h4>
+                        <p>Integration with HIBP, DEV#POPPER APT feeds, and CVE tracking. Surface nation-state threat
+                            actor activity targeting your sector in real time.</p>
+                    </div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-icon">🌐</div>
+                    <div class="cap-text">
+                        <h4>White-Label Deployment</h4>
+                        <p>Full source deployment to your infrastructure. On-prem, air-gapped, or private cloud. Custom
+                            data feeds, branding, and classification markings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PRICING ── -->
+    <section id="pricing">
+        <div class="section-header fade-up">
+            <span class="section-tag">// access tiers</span>
+            <h2>Intelligence at<br>every scale</h2>
+            <p>From solo analysts to government SOCs — OVERWATCH scales with your mission.</p>
+        </div>
+        <div class="pricing fade-up">
+            <div class="pricing-grid">
+                <!-- MONITOR -->
+                <div class="price-card">
+                    <div class="price-tier">MONITOR</div>
+                    <div class="price-amount">$9<span>/mo</span></div>
+                    <div class="price-desc">For analysts and traders who need the live picture.</div>
+                    <ul class="price-features">
+                        <li>Live GeoRisk Score</li>
+                        <li>Military aircraft map</li>
+                        <li>OSINT feed (10min delay)</li>
+                        <li>8-hour briefings</li>
+                        <li class="dim">OVERWATCH AI Chat</li>
+                        <li class="dim">Trade Directives</li>
+                        <li class="dim">API Access</li>
+                        <li class="dim">White-Label</li>
+                    </ul>
+                    <button class="price-btn price-btn-ghost">Start Free Trial</button>
+                </div>
+                <!-- PRO -->
+                <div class="price-card featured">
+                    <div class="price-badge">MOST POPULAR</div>
+                    <div class="price-tier">ANALYST PRO</div>
+                    <div class="price-amount">$29<span>/mo</span></div>
+                    <div class="price-desc">Full intelligence terminal for professional operators.</div>
+                    <ul class="price-features">
+                        <li>Everything in Monitor</li>
+                        <li>Real-time OSINT feed</li>
+                        <li>OVERWATCH AI Chat</li>
+                        <li>Trade Directive Engine</li>
+                        <li>Breach & Cyber Intel</li>
+                        <li>Discord community</li>
+                        <li class="dim">API Access</li>
+                        <li class="dim">White-Label</li>
+                    </ul>
+                    <button class="price-btn price-btn-fill">Get Analyst Pro →</button>
+                </div>
+                <!-- ENTERPRISE -->
+                <div class="price-card">
+                    <div class="price-tier">ENTERPRISE</div>
+                    <div class="price-amount" style="font-size:32px; padding-top:8px;">Custom</div>
+                    <div class="price-desc">White-label deployment for agencies, funds, and defense contractors.</div>
+                    <ul class="price-features">
+                        <li>Full source deployment</li>
+                        <li>Air-gap / on-prem option</li>
+                        <li>Custom data feeds</li>
+                        <li>SIGINT integration</li>
+                        <li>Dedicated API + SLA</li>
+                        <li>Classification markings</li>
+                        <li>Custom AI fine-tuning</li>
+                        <li>24/7 Ops support</li>
+                    </ul>
+                    <button class="price-btn price-btn-enterprise"
+                        onclick="document.getElementById('enterprise').scrollIntoView({behavior:'smooth'})">Request
+                        Briefing →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── ENTERPRISE CTA ── -->
+    <section id="enterprise" style="padding: 0 40px 100px;">
+        <div class="enterprise-cta fade-up">
+            <h2>Request an Enterprise Briefing</h2>
+            <p>We work directly with government agencies, defense contractors, and institutional funds. Reach out for a
+                classified capabilities briefing and custom deployment proposal.</p>
+            <div class="enterprise-badges">
+                <span class="ent-badge ent-badge-amber">⚠ DEPLOYMENT IN 72 HOURS</span>
+                <span class="ent-badge ent-badge-cyan">✓ ON-PREM AVAILABLE</span>
+                <span class="ent-badge ent-badge-green">✓ AIR-GAP CAPABLE</span>
+            </div>
+            <div class="contact-form">
+                <input class="contact-input" type="email" placeholder="your@organization.gov" id="contact-email">
+                <button class="btn-primary" onclick="handleEnterprise()">Request Briefing →</button>
+            </div>
+            <p style="font-size:11px;color:var(--text-dim);margin-top:16px;font-family:var(--mono);">// Typical response
+                within 4 hours. NDA available on request.</p>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+        <div class="footer-logo">OVERWATCH</div>
+        <div class="footer-links">
+            <a href="#">Terminal</a>
+            <a href="#">Capabilities</a>
+            <a href="#">Pricing</a>
+            <a href="mailto:gary@titansignal.io">Contact</a>
+        </div>
+        <div class="footer-class">© 2026 TITAN SIGNAL — AI FOUNDRY &nbsp;|&nbsp; OVERWATCH v1.0</div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        function handleEnterprise() {
+            const email = document.getElementById('contact-email').value;
+            if (!email) { alert('Please enter your organization email.'); return; }
+            // Wire to your CRM / email intake
+            window.location.href = `mailto:gary@titansignal.io?subject=OVERWATCH Enterprise Briefing Request&body=Organization email: ${email}%0A%0APlease schedule a capabilities briefing.`;
+        }
+    </script>
+</body>
+
+</html>
