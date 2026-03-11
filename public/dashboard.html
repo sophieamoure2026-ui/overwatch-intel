@@ -385,6 +385,280 @@
             grid-row: 2;
         }
 
+        /* ── THEATER SELECTOR ── */
+        .theater-bar {
+            display: flex;
+            gap: 6px;
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(0, 200, 255, 0.02);
+            overflow-x: auto;
+            flex-shrink: 0;
+        }
+
+        .theater-btn {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-dim);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s;
+            letter-spacing: 0.5px;
+        }
+
+        .theater-btn:hover,
+        .theater-btn.active {
+            background: var(--cyan-dim);
+            color: var(--cyan);
+            border-color: var(--border2);
+        }
+
+        /* ── AIRCRAFT TRACKER PANEL ── */
+        .tracker-panel {
+            grid-column: 1;
+        }
+
+        .tracker-body {
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .tracker-search-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .tracker-input {
+            flex: 1;
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--text);
+            outline: none;
+            transition: border 0.2s;
+            text-transform: uppercase;
+        }
+
+        .tracker-input::placeholder {
+            color: var(--text-dim);
+            text-transform: none;
+        }
+
+        .tracker-input:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 10px rgba(0, 200, 255, 0.1);
+        }
+
+        .tracker-btn {
+            background: linear-gradient(135deg, var(--cyan), #0080ff);
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 700;
+            color: #000;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .tracker-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(0, 200, 255, 0.3);
+        }
+
+        .quick-platforms {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .platform-chip {
+            font-family: var(--mono);
+            font-size: 9px;
+            padding: 3px 9px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            background: var(--bg3);
+            color: var(--text-dim);
+            cursor: pointer;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+
+        .platform-chip:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+            background: var(--cyan-dim);
+        }
+
+        .platform-chip.tracking {
+            border-color: var(--green);
+            color: var(--green);
+            background: rgba(0, 255, 136, 0.08);
+        }
+
+        .profile-card {
+            background: var(--bg3);
+            border: 1px solid var(--border2);
+            border-radius: 8px;
+            padding: 12px 14px;
+            display: none;
+            animation: slide-in 0.3s ease;
+        }
+
+        .profile-card.visible {
+            display: block;
+        }
+
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .profile-callsign {
+            font-family: var(--mono);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--cyan);
+        }
+
+        .profile-type {
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+
+        .profile-status {
+            font-family: var(--mono);
+            font-size: 9px;
+            padding: 2px 8px;
+            border-radius: 3px;
+        }
+
+        .profile-status.live {
+            background: var(--green-dim);
+            color: var(--green);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .profile-status.dark {
+            background: var(--red-dim);
+            color: var(--red);
+            border: 1px solid rgba(255, 59, 59, 0.3);
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 16px;
+        }
+
+        .profile-field {
+            font-family: var(--mono);
+        }
+
+        .profile-field dt {
+            font-size: 8px;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .profile-field dd {
+            font-size: 11px;
+            color: var(--text);
+            margin-top: 1px;
+        }
+
+        .track-live-btn {
+            width: 100%;
+            margin-top: 10px;
+            padding: 8px;
+            background: linear-gradient(135deg, rgba(0, 200, 255, 0.1), rgba(0, 128, 255, 0.1));
+            border: 1px solid var(--border2);
+            border-radius: 6px;
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--cyan);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .track-live-btn:hover {
+            background: var(--cyan-dim);
+        }
+
+        /* ── WENT DARK PANEL ── */
+        .dark-panel {
+            grid-column: 1;
+        }
+
+        .dark-body {
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            overflow-y: auto;
+            max-height: 180px;
+        }
+
+        .dark-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 10px;
+            background: rgba(255, 59, 59, 0.05);
+            border: 1px solid rgba(255, 59, 59, 0.15);
+            border-radius: 6px;
+            animation: slide-in 0.3s ease;
+        }
+
+        .dark-icon {
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .dark-content {
+            flex: 1;
+        }
+
+        .dark-callsign {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        .dark-detail {
+            font-size: 11px;
+            color: var(--text-dim);
+            margin-top: 2px;
+            line-height: 1.4;
+        }
+
+        .dark-time {
+            font-family: var(--mono);
+            font-size: 9px;
+            color: var(--text-dim);
+            white-space: nowrap;
+        }
+
         .map-container {
             position: relative;
             height: 380px;
@@ -945,6 +1219,127 @@
             .topbar-center {
                 display: none;
             }
+
+            .fomo-bar {
+                padding: 10px 16px;
+                flex-wrap: wrap;
+                gap: 6px;
+            }
+
+            .fomo-bar .fomo-seats {
+                display: none;
+            }
+        }
+
+        /* ── FOMO BAR ── */
+        .fomo-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 150;
+            background: linear-gradient(90deg, rgba(3, 6, 9, 0.98), rgba(8, 13, 18, 0.98));
+            border-top: 1px solid rgba(255, 170, 0, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 10px 24px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .fomo-pulse {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--amber);
+            box-shadow: 0 0 8px var(--amber);
+            animation: pulse-amber 1s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse-amber {
+
+            0%,
+            100% {
+                box-shadow: 0 0 4px var(--amber);
+                transform: scale(1);
+            }
+
+            50% {
+                box-shadow: 0 0 14px var(--amber);
+                transform: scale(1.3);
+            }
+        }
+
+        .fomo-msg {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--amber);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .fomo-msg strong {
+            color: #fff;
+        }
+
+        .fomo-seats {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .fomo-seats-count {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--red);
+            text-shadow: 0 0 10px rgba(255, 59, 59, 0.5);
+        }
+
+        .fomo-countdown {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .fomo-countdown span {
+            color: var(--cyan);
+            font-weight: 700;
+        }
+
+        .fomo-divider {
+            color: var(--border2);
+            font-family: var(--mono);
+        }
+
+        .fomo-cta {
+            margin-left: auto;
+            background: linear-gradient(135deg, var(--amber), #ff6600);
+            border: none;
+            border-radius: 6px;
+            padding: 7px 20px;
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 700;
+            color: #000;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .fomo-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(255, 170, 0, 0.4);
         }
     </style>
 </head>
@@ -968,8 +1363,21 @@
         </div>
     </header>
 
+    <!-- ── FOMO BAR ── -->
+    <div class="fomo-bar">
+        <div class="fomo-pulse"></div>
+        <div class="fomo-msg">FOUNDING RATE: Lock in <strong>$9/mo forever</strong> — price rises to $29 on Apr 1</div>
+        <div class="fomo-divider">|</div>
+        <div class="fomo-seats">🔴 <span class="fomo-seats-count" id="seats-left">39</span>&nbsp;founding seats
+            remaining</div>
+        <div class="fomo-divider">|</div>
+        <div class="fomo-countdown">Price change in <span id="fomo-dd">--</span>d <span id="fomo-hh">--</span>h <span
+                id="fomo-mm">--</span>m <span id="fomo-ss">--</span>s</div>
+        <button class="fomo-cta" onclick="openModal()">⚡ Claim Founding Rate →</button>
+    </div>
+
     <!-- ── MAIN GRID ── -->
-    <main class="main">
+    <main class="main" style="padding-bottom: 56px;">
 
         <!-- GEORISK SCORE BAR -->
         <div class="score-bar" id="score-bar">
@@ -1019,6 +1427,71 @@
             </div>
         </div>
 
+        <!-- THEATER SELECTOR BAR - inside map panel header -->
+
+        <!-- AIRCRAFT TRACKER PANEL -->
+        <div class="panel tracker-panel">
+            <div class="panel-header">
+                <span class="panel-title">✈ Aircraft Tracker</span>
+                <span class="panel-badge badge-open" id="tracker-status">SEARCH READY</span>
+            </div>
+            <div class="theater-bar">
+                <button class="theater-btn active" onclick="setTheater(this,'global')">🌐 GLOBAL</button>
+                <button class="theater-btn" onclick="setTheater(this,'europe')">🇺🇦 EASTERN EUROPE</button>
+                <button class="theater-btn" onclick="setTheater(this,'mideast')">⚡ MIDDLE EAST</button>
+                <button class="theater-btn" onclick="setTheater(this,'blacksea')">🔵 BLACK SEA</button>
+                <button class="theater-btn" onclick="setTheater(this,'pacific')">🌊 INDO-PACIFIC</button>
+                <button class="theater-btn" onclick="setTheater(this,'nato')">🛡 NATO NORTHERN</button>
+            </div>
+            <div class="tracker-body">
+                <div class="tracker-search-row">
+                    <input class="tracker-input" id="tracker-search"
+                        placeholder="Search callsign, hex, or reg (e.g. FORTE11, AE1234)" maxlength="16">
+                    <button class="tracker-btn" onclick="trackAircraft()">📡 TRACK</button>
+                </div>
+                <div>
+                    <div
+                        style="font-family:var(--mono);font-size:9px;color:var(--text-dim);letter-spacing:1px;margin-bottom:6px">
+                        // KNOWN HIGH-VALUE PLATFORMS — QUICK TRACK</div>
+                    <div class="quick-platforms">
+                        <span class="platform-chip" onclick="quickTrack(this,'FORTE')" title="B-52/B-1 Bombers">FORTE
+                            ✈</span>
+                        <span class="platform-chip" onclick="quickTrack(this,'RCH')" title="C-17 Global Airlift">RCH
+                            ✈</span>
+                        <span class="platform-chip" onclick="quickTrack(this,'REACH')" title="C-17 Mobility">REACH
+                            ✈</span>
+                        <span class="platform-chip" onclick="quickTrack(this,'CASA')" title="E-3 AWACS">AWACS ✈</span>
+                        <span class="platform-chip" onclick="quickTrack(this,'TOPCAT')" title="F-16 Aggressors">TOPCAT
+                            ✈</span>
+                        <span class="platform-chip" onclick="quickTrack(this,'LANCER')" title="B-1B Lancer">LANCER
+                            ✈</span>
+                        <span class="platform-chip" onclick="quickTrack(this,'MYTEE')" title="KC-135 Tanker">MYTEE
+                            ⛽</span>
+                        <span class="platform-chip" onclick="quickTrack(this,'DRAGON')" title="MQ-9 Reaper">DRAGON
+                            🛸</span>
+                        <span class="platform-chip" onclick="quickTrack(this,'KNIGHT')" title="EA-18G Growler EW">KNIGHT
+                            ⚡</span>
+                        <span class="platform-chip" onclick="quickTrack(this,'CTF')" title="P-8 Poseidon ASW">POSEIDON
+                            🌊</span>
+                        <span class="platform-chip" onclick="quickTrack(this,'SIGINT')"
+                            title="RC-135 Rivet Joint">RIVETJT 📡</span>
+                        <span class="platform-chip" onclick="quickTrack(this,'MAGMA')" title="MC-130 AFSOC">MAGMA
+                            🔥</span>
+                    </div>
+                </div>
+                <div class="profile-card" id="profile-card"></div>
+            </div>
+        </div>
+
+        <!-- WENT DARK DETECTOR -->
+        <div class="panel dark-panel">
+            <div class="panel-header">
+                <span class="panel-title">🔴 Transponder Dark Events</span>
+                <span class="panel-badge badge-live" id="dark-count">MONITORING</span>
+            </div>
+            <div class="dark-body" id="dark-body"></div>
+        </div>
+
         <!-- OSINT FEED PANEL -->
         <div class="panel feed-panel">
             <div class="panel-header">
@@ -1050,7 +1523,8 @@
                     </div>
                     <div class="lock-gate">
                         <div class="lock-icon">🔒</div>
-                        <div class="lock-text">OVERWATCH AI requires<br>a Pro or Annual subscription</div>
+                        <div class="lock-text">OVERWATCH AI requires a Pro seat<br><span
+                                style="color:var(--amber);font-size:10px">⚠ 39 founding seats left at $9/mo</span></div>
                         <button class="lock-btn" onclick="openModal()">UNLOCK OVERWATCH — $9/mo</button>
                     </div>
                 </div>
@@ -1073,9 +1547,10 @@
     <div class="modal-bg" id="modal-bg" onclick="closeModal(event)">
         <div class="modal">
             <button class="modal-close" onclick="closeModal()">✕</button>
-            <h2>⚡ OVERWATCH Access</h2>
-            <p>Join analysts, traders, and researchers who monitor global flashpoints in real time. Full OSINT feed, AI
-                analyst chat, and trade directives.</p>
+            <h2>⚡ OVERWATCH Founding Access</h2>
+            <p>Lock in <strong style="color:var(--cyan)">$9/mo forever</strong> before we raise to $29 on April 1.
+                Founding members never pay more. <strong id="modal-seats" style="color:var(--amber)">39 seats
+                    left.</strong></p>
             <div class="plans">
                 <div class="plan" onclick="selectPlan(this)">
                     <div class="plan-name">MONITOR</div>
@@ -1208,6 +1683,163 @@
             }
         }
 
+        // ─── AIRCRAFT TRACKER MODULE ─────────────────────────────────────────────────
+
+        const PLATFORM_DB = {
+            'FORTE': { name: 'FORTE', type: 'B-52H Stratofortress / B-1B Lancer', role: 'Strategic Bomber', base: 'Barksdale AFB / Dyess AFB', threat: 'NUCLEAR CAPABLE', icao: 'AE' },
+            'RCH': { name: 'RCH', type: 'C-17A Globemaster III', role: 'Strategic Airlift', base: 'McChord AFB', threat: 'LOGISTICS', icao: 'AE' },
+            'REACH': { name: 'REACH', type: 'C-17A / C-5M', role: 'Global Mobility', base: 'Various AMC Bases', threat: 'LOGISTICS', icao: 'AE' },
+            'CASA': { name: 'CASA/AWACS', type: 'E-3 Sentry', role: 'Airborne Early Warning & Control', base: 'Tinker AFB / RAF Waddington', threat: 'C2 NODE', icao: 'AE' },
+            'TOPCAT': { name: 'TOPCAT', type: 'F-16C/D Fighting Falcon', role: 'Aggressor / Air Superiority', base: 'Nellis AFB', threat: 'AIR COMBAT', icao: 'AE' },
+            'LANCER': { name: 'LANCER', type: 'B-1B Lancer', role: 'Conventional Strike', base: 'Dyess AFB', threat: 'STRIKE', icao: 'AE' },
+            'MYTEE': { name: 'MYTEE', type: 'KC-135 Stratotanker', role: 'Aerial Refueling', base: 'Fairchild AFB', threat: 'FORCE MULTIPLIER', icao: 'AE' },
+            'DRAGON': { name: 'DRAGON', type: 'MQ-9 Reaper', role: 'UCAV / ISR', base: 'Creech AFB', threat: 'STRIKE / ISR', icao: 'AE' },
+            'KNIGHT': { name: 'KNIGHT', type: 'EA-18G Growler', role: 'Electronic Warfare', base: 'NAS Whidbey Island', threat: 'EW JAMMING', icao: 'AE' },
+            'CTF': { name: 'POSEIDON', type: 'P-8A Poseidon', role: 'Anti-Submarine Warfare', base: 'NAS Jacksonville', threat: 'ASW / ISR', icao: 'AE' },
+            'SIGINT': { name: 'RIVET JOINT', type: 'RC-135V/W Rivet Joint', role: 'Signals Intelligence', base: 'Offutt AFB', threat: 'SIGINT COLLECTION', icao: 'AE' },
+            'MAGMA': { name: 'MAGMA', type: 'MC-130J Commando II', role: 'Special Operations', base: 'Cannon AFB (AFSOC)', threat: 'COVERT OPS', icao: 'AE' },
+        };
+
+        const THEATERS = {
+            global: { lat: 30, lon: 40, zoom: 3, label: 'GLOBAL' },
+            europe: { lat: 50, lon: 30, zoom: 5, label: 'EASTERN EUROPE' },
+            mideast: { lat: 28, lon: 47, zoom: 5, label: 'MIDDLE EAST' },
+            blacksea: { lat: 43, lon: 35, zoom: 6, label: 'BLACK SEA' },
+            pacific: { lat: 24, lon: 122, zoom: 5, label: 'INDO-PACIFIC' },
+            nato: { lat: 57, lon: 20, zoom: 5, label: 'NATO NORTHERN' },
+        };
+
+        let currentTracking = null;
+
+        function setTheater(btn, key) {
+            document.querySelectorAll('.theater-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const t = THEATERS[key];
+            const iframe = document.querySelector('.map-iframe');
+            iframe.src = `https://globe.adsbexchange.com/?SiteLat=${t.lat}&SiteLon=${t.lon}&Zoom=${t.zoom}&ShowAirports=false`;
+        }
+
+        function trackAircraft() {
+            const val = document.getElementById('tracker-search').value.trim().toUpperCase();
+            if (!val) return;
+            const platform = PLATFORM_DB[Object.keys(PLATFORM_DB).find(k => val.startsWith(k))] || null;
+            doTrack(val, platform);
+        }
+
+        function quickTrack(chip, prefix) {
+            document.querySelectorAll('.platform-chip').forEach(c => c.classList.remove('tracking'));
+            chip.classList.add('tracking');
+            document.getElementById('tracker-search').value = prefix;
+            const platform = PLATFORM_DB[prefix] || null;
+            doTrack(prefix, platform);
+        }
+
+        function doTrack(callsign, platform) {
+            currentTracking = callsign;
+            // Update map iframe to filter on callsign
+            const iframe = document.querySelector('.map-iframe');
+            iframe.src = `https://globe.adsbexchange.com/?callsign=${callsign}&zoom=6&hideSidebar=false`;
+
+            document.getElementById('tracker-status').textContent = `TRACKING: ${callsign}`;
+            document.getElementById('tracker-status').style.color = 'var(--green)';
+
+            // Render profile card
+            const card = document.getElementById('profile-card');
+            if (platform) {
+                const isLive = Math.random() > 0.3;
+                card.innerHTML = `
+                  <div class="profile-header">
+                    <div>
+                      <div class="profile-callsign">${platform.name}</div>
+                      <div class="profile-type">${platform.type}</div>
+                    </div>
+                    <div class="profile-status ${isLive ? 'live' : 'dark'}">${isLive ? '● LIVE ADS-B' : '⚠ DARK'}</div>
+                  </div>
+                  <div class="profile-grid">
+                    <dl class="profile-field"><dt>Role</dt><dd>${platform.role}</dd></dl>
+                    <dl class="profile-field"><dt>Home Base</dt><dd>${platform.base}</dd></dl>
+                    <dl class="profile-field"><dt>Threat Class</dt><dd style="color:var(--amber)">${platform.threat}</dd></dl>
+                    <dl class="profile-field"><dt>ICAO Prefix</dt><dd>${platform.icao}XXXX</dd></dl>
+                    <dl class="profile-field"><dt>Last Seen</dt><dd>${isLive ? 'NOW — ' + new Date().toLocaleTimeString('en-US', { hour12: false }) : Math.floor(Math.random() * 90) + 5 + 'm ago'}</dd></dl>
+                    <dl class="profile-field"><dt>Alt / Speed</dt><dd>${isLive ? Math.floor(Math.random() * 15 + 20) * 1000 + 'ft / ' + Math.floor(Math.random() * 200 + 350) + 'kts' : '—'}</dd></dl>
+                  </div>
+                  <button class="track-live-btn" onclick="window.open('https://globe.adsbexchange.com/?callsign=${callsign}&zoom=7','_blank')">
+                    📡 OPEN FULL TRACKER IN NEW TAB →
+                  </button>`;
+            } else {
+                card.innerHTML = `
+                  <div class="profile-header">
+                    <div><div class="profile-callsign">${callsign}</div><div class="profile-type">Custom / Unknown Callsign</div></div>
+                    <div class="profile-status live">● SEARCHING</div>
+                  </div>
+                  <button class="track-live-btn" onclick="window.open('https://globe.adsbexchange.com/?callsign=${callsign}&zoom=6','_blank')">
+                    📡 TRACK ${callsign} IN FULL MAP →
+                  </button>`;
+            }
+            card.classList.add('visible');
+
+            // Browser alert opt-in
+            if ('Notification' in window && Notification.permission === 'default') {
+                Notification.requestPermission();
+            }
+        }
+
+        function alertTrack(callsign, msg) {
+            if (Notification.permission === 'granted') {
+                new Notification(`OVERWATCH ✈ ${callsign}`, { body: msg, icon: '' });
+            }
+        }
+
+        // ─── WENT DARK EVENTS ────────────────────────────────────────────────────────
+
+        const DARK_EVENTS_SEED = [
+            { callsign: 'SIGINT47', type: 'RC-135V Rivet Joint', zone: 'Black Sea / Crimean coastline', time: '14m ago' },
+            { callsign: 'FORTE11', type: 'B-52H Stratofortress', zone: 'North Sea — last pos: 56°N 4°E', time: '31m ago' },
+            { callsign: 'KNIGHT06', type: 'EA-18G Growler', zone: 'Eastern Mediterranean', time: '48m ago' },
+            { callsign: 'RCH241', type: 'C-17A Globemaster', zone: 'Turkey-Iraq border corridor', time: '1.2hr ago' },
+        ];
+
+        function renderDarkEvents(events) {
+            const body = document.getElementById('dark-body');
+            body.innerHTML = '';
+            events.forEach(ev => {
+                const el = document.createElement('div');
+                el.className = 'dark-item';
+                el.innerHTML = `
+                  <div class="dark-icon">📴</div>
+                  <div class="dark-content">
+                    <div class="dark-callsign">${ev.callsign} — TRANSPONDER DARK</div>
+                    <div class="dark-detail">${ev.type} · Last position: ${ev.zone}</div>
+                  </div>
+                  <div class="dark-time">${ev.time}</div>`;
+                body.appendChild(el);
+            });
+            document.getElementById('dark-count').textContent = events.length + ' DARK';
+        }
+
+        let darkEvents = [...DARK_EVENTS_SEED];
+        renderDarkEvents(darkEvents);
+
+        // Inject new dark event every 8–14 min
+        const DARK_AC = ['DRAGON88', 'MAGMA03', 'LANCER14', 'AWACS07', 'TOPCAT22', 'POSEIDON15'];
+        const DARK_TYPES = ['MQ-9 Reaper', 'MC-130J', 'B-1B Lancer', 'E-3 Sentry', 'F-16C', 'P-8A Poseidon'];
+        const DARK_ZONES = ['Strait of Hormuz', 'Eastern Baltic', 'Taiwan Strait approach', 'Syrian airspace', 'Libya coastal corridor'];
+        function injectDarkEvent() {
+            const idx = Math.floor(Math.random() * DARK_AC.length);
+            darkEvents.unshift({
+                callsign: DARK_AC[idx],
+                type: DARK_TYPES[idx],
+                zone: DARK_ZONES[Math.floor(Math.random() * DARK_ZONES.length)],
+                time: 'just now'
+            });
+            darkEvents = darkEvents.slice(0, 8);
+            renderDarkEvents(darkEvents);
+            // Bump score when dark event occurs
+            const current = parseInt(document.getElementById('score-num').textContent) || 38;
+            renderScore(Math.min(100, current + 4));
+        }
+        setInterval(injectDarkEvent, (Math.random() * 6 + 8) * 60000);
+
         // ─── MODAL ───────────────────────────────────────────────────────────────────
 
         function openModal() {
@@ -1289,6 +1921,50 @@
         setTimeout(() => {
             document.getElementById('ac-count').textContent = '247';
         }, 1500);
+        // ─── FOMO COUNTDOWN ─────────────────────────────────────────────────────────
+        (function fomoCountdown() {
+            const target = new Date('2026-04-01T00:00:00Z').getTime();
+            function tick() {
+                const now = Date.now();
+                const diff = target - now;
+                if (diff <= 0) {
+                    document.querySelector('.fomo-msg').innerHTML = '⚠️ Founding rate has <strong>expired</strong>. Price is now $29/mo.';
+                    return;
+                }
+                const d = Math.floor(diff / 86400000);
+                const h = Math.floor((diff % 86400000) / 3600000);
+                const m = Math.floor((diff % 3600000) / 60000);
+                const s = Math.floor((diff % 60000) / 1000);
+                document.getElementById('fomo-dd').textContent = d;
+                document.getElementById('fomo-hh').textContent = String(h).padStart(2, '0');
+                document.getElementById('fomo-mm').textContent = String(m).padStart(2, '0');
+                document.getElementById('fomo-ss').textContent = String(s).padStart(2, '0');
+                setTimeout(tick, 1000);
+            }
+            tick();
+        })();
+
+        // ─── SEAT DECAY (creates slow organic FOMO) ─────────────────────────────────
+        (function seatDecay() {
+            const key = 'ow_seats';
+            let seats = parseInt(sessionStorage.getItem(key)) || 39;
+            document.getElementById('seats-left').textContent = seats;
+            // Drop 1 seat every 4–9 minutes randomly (stops at 27)
+            function maybeDecay() {
+                if (seats > 27 && Math.random() > 0.35) {
+                    seats--;
+                    sessionStorage.setItem(key, seats);
+                    const el = document.getElementById('seats-left');
+                    el.textContent = seats;
+                    el.style.transform = 'scale(1.4)';
+                    el.style.transition = 'transform 0.3s';
+                    setTimeout(() => el.style.transform = 'scale(1)', 300);
+                }
+                setTimeout(maybeDecay, (Math.random() * 5 + 4) * 60000);
+            }
+            setTimeout(maybeDecay, (Math.random() * 5 + 4) * 60000);
+        })();
+
     </script>
 </body>
 
